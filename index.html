@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メディア課 総合分析レポート</title>
+<style>
+  :root {
+    --primary: #1a2332;
+    --primary-light: #2a3a4e;
+    --accent: #3b82f6;
+    --accent-dark: #2563eb;
+    --danger: #ef4444;
+    --danger-light: #fef2f2;
+    --warning: #f59e0b;
+    --warning-light: #fffbeb;
+    --success: #10b981;
+    --success-light: #ecfdf5;
+    --info: #6366f1;
+    --info-light: #eef2ff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: .02em;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 1rem;
+    opacity: .75;
+    font-weight: 400;
+  }
+  .header .meta {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: .85rem;
+    opacity: .7;
+  }
+
+  /* ===== NAV ===== */
+  .toc {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .toc-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .toc a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: .8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--gray-600);
+    background: var(--gray-100);
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .toc a:hover, .toc a:focus {
+    background: var(--accent);
+    color: #fff;
+  }
+  .toc a.toc-bizmaps { border-left: 3px solid var(--danger); }
+  .toc a.toc-marke { border-left: 3px solid var(--accent); }
+  .toc a.toc-portfolio { border-left: 3px solid var(--success); }
+  .toc a.toc-strategy { border-left: 3px solid var(--info); }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* ===== SECTION ===== */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .section-header .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: .9rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-200);
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h4 {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--gray-700);
+    margin: 16px 0 8px;
+  }
+  .card p, .card li {
+    color: var(--gray-600);
+    font-size: .92rem;
+  }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 4px; }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .85rem;
+  }
+  thead th {
+    background: var(--gray-800);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+  }
+  tbody tr:hover { background: var(--gray-50); }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bold { font-weight: 700; }
+  .danger { color: var(--danger); font-weight: 700; }
+  .warning { color: var(--warning); font-weight: 700; }
+  .success { color: var(--success); font-weight: 700; }
+  .muted { color: var(--gray-400); }
+
+  /* ===== ALERT ===== */
+  .alert {
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: .9rem;
+    line-height: 1.6;
+    border-left: 4px solid;
+  }
+  .alert-danger { background: var(--danger-light); border-color: var(--danger); }
+  .alert-warning { background: var(--warning-light); border-color: var(--warning); }
+  .alert-success { background: var(--success-light); border-color: var(--success); }
+  .alert-info { background: var(--info-light); border-color: var(--info); }
+  .alert strong { display: block; margin-bottom: 4px; color: var(--gray-900); }
+
+  /* ===== KPI GRID ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .kpi-box {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-align: center;
+  }
+  .kpi-box .kpi-label {
+    font-size: .78rem;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .kpi-box .kpi-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    line-height: 1.2;
+  }
+  .kpi-box .kpi-sub {
+    font-size: .75rem;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+  .kpi-box.kpi-danger .kpi-value { color: var(--danger); }
+  .kpi-box.kpi-warning .kpi-value { color: var(--warning); }
+  .kpi-box.kpi-success .kpi-value { color: var(--success); }
+  .kpi-box.kpi-info .kpi-value { color: var(--info); }
+
+  /* ===== FLOW DIAGRAM ===== */
+  .flow {
+    background: var(--gray-100);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 16px 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .82rem;
+    line-height: 1.9;
+    white-space: pre;
+    overflow-x: auto;
+    color: var(--gray-700);
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--gray-300);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: .88rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-item .tl-label {
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: .82rem;
+    margin-bottom: 2px;
+  }
+  .timeline-item .tl-body { color: var(--gray-600); }
+
+  /* ===== PORTFOLIO MAP ===== */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .pf-card {
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+  }
+  .pf-card .pf-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+  }
+  .pf-card .pf-sessions {
+    font-size: .82rem;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+  .pf-card .pf-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: .72rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .pf-card .pf-desc {
+    font-size: .85rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .tag-invest { background: var(--accent); }
+  .tag-conditional { background: var(--warning); }
+  .tag-maintain { background: var(--gray-400); }
+  .tag-close { background: var(--danger); }
+  .tag-verify { background: var(--info); }
+
+  /* ===== TWO COL ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== COMPARISON BAR ===== */
+  .bar-chart { margin: 12px 0; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: .85rem;
+  }
+  .bar-label { width: 120px; flex-shrink: 0; color: var(--gray-600); text-align: right; font-weight: 500; }
+  .bar-track { flex: 1; height: 22px; background: var(--gray-100); border-radius: 4px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: .75rem; font-weight: 700; color: #fff; min-width: 32px; }
+  .bar-value { flex-shrink: 0; width: 60px; font-weight: 700; font-size: .85rem; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .toc { display: none; }
+    .header { padding: 24px; }
+    .card { break-inside: avoid; }
+    body { font-size: 11pt; }
+  }
+
+  /* ===== SEPARATOR ===== */
+  .part-separator {
+    text-align: center;
+    padding: 40px 0 24px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gray-300);
+    letter-spacing: .1em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<header class="header">
+  <h1>メディア課 総合分析レポート</h1>
+  <p class="subtitle">BIZMAPS チャーン分析 / マーケメディア構造分析 / メディアポートフォリオ再編</p>
+  <div class="meta">
+    <span>分析基準日: 2026年3月31日</span>
+    <span>データ期間: 2020年8月 - 2026年3月</span>
+    <span>対象: メディア課運営 全9メディア</span>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- TOC                                                           -->
+<!-- ============================================================ -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#exec" class="toc-strategy">エグゼクティブサマリー</a>
+    <a href="#bizmaps" class="toc-bizmaps">BIZMAPS分析</a>
+    <a href="#bizmaps-measures" class="toc-bizmaps">BIZMAPS施策</a>
+    <a href="#marke" class="toc-marke">マーケメディア分析</a>
+    <a href="#portfolio" class="toc-portfolio">メディアポートフォリオ</a>
+    <a href="#synergy" class="toc-strategy">メディア間連携</a>
+    <a href="#action" class="toc-strategy">ネクストアクション</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- EXECUTIVE SUMMARY                                             -->
+<!-- ============================================================ -->
+<section class="section" id="exec">
+  <div class="section-header">
+    <span class="badge" style="background:var(--info)">0</span>
+    <h2>エグゼクティブサマリー</h2>
+  </div>
+
+  <div class="card">
+    <h3>メディア課の現在地</h3>
+    <div class="kpi-grid">
+      <div class="kpi-box">
+        <div class="kpi-label">メディア課 月間KGI</div>
+        <div class="kpi-value">&yen;20,000,000</div>
+        <div class="kpi-sub">達成率 115.6%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">収益構成</div>
+        <div class="kpi-value">70:30</div>
+        <div class="kpi-sub">マーケメディア : BIZMAPS</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">運営メディア数</div>
+        <div class="kpi-value">9</div>
+        <div class="kpi-sub">うち収益貢献 2メディア</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">チーム規模</div>
+        <div class="kpi-value">12名</div>
+        <div class="kpi-sub">社員3 + 在宅Dir 6 + 在宅Sales 3</div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>最重要課題（3つ）</strong>
+      <strong style="font-size:.92rem; color:var(--danger);">1. BIZMAPSのチャーンレート 84.5%</strong>
+      顧客の81.1%が1回の購入で離脱。リピート率は年々低下し（2022年30.9% → 2025年13.6%）、このペースが続けばCY2029にリピート率0%に到達する見通し。<br><br>
+      <strong style="font-size:.92rem; color:var(--danger);">2. マーケメディアのアクティブ率 16%</strong>
+      売上の70%を担う柱でありながら、掲載企業の84%が非アクティブ。BIZMAPSと同根の「初期体験設計の欠如」が原因と推定。経済的インパクトはBIZMAPS改善の5〜8倍。<br><br>
+      <strong style="font-size:.92rem; color:var(--danger);">3. 9メディア並列運営によるリソース分散</strong>
+      収益貢献は2メディアに集中する一方、残り7メディアにリソースが分散。うち2メディア（CXOワークス・リワークス）はトラフィック品質に重大な疑義あり。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART I: BIZMAPS                                               -->
+<!-- ============================================================ -->
+<div class="part-separator">PART I ── BIZMAPS</div>
+
+<section class="section" id="bizmaps">
+  <div class="section-header">
+    <span class="badge" style="background:var(--danger)">I</span>
+    <h2>BIZMAPS チャーンレート構造分析</h2>
+  </div>
+
+  <!-- KPI Overview -->
+  <div class="card">
+    <h3>サブスクリプション全体KPI</h3>
+    <div class="kpi-grid">
+      <div class="kpi-box kpi-danger">
+        <div class="kpi-label">全体チャーンレート</div>
+        <div class="kpi-value">84.5%</div>
+        <div class="kpi-sub">598社 / 708社がチャーン</div>
+      </div>
+      <div class="kpi-box kpi-warning">
+        <div class="kpi-label">リピート率</div>
+        <div class="kpi-value">18.9%</div>
+        <div class="kpi-sub">134社 / 708社</div>
+      </div>
+      <div class="kpi-box kpi-success">
+        <div class="kpi-label">アクティブ顧客</div>
+        <div class="kpi-value">110社</div>
+        <div class="kpi-sub">全サブスク顧客の15.5%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">累計売上</div>
+        <div class="kpi-value">&yen;90.9M</div>
+        <div class="kpi-sub">サブスクのみ &yen;82.1M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Diagnosis -->
+  <div class="card">
+    <h3>事業健全性診断</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>指標</th><th>実測値</th><th>健全水準</th><th>深刻度</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>全体チャーンレート</td><td class="num danger">84.5%</td><td class="num">年間5〜7%（※月額SaaS基準）</td><td class="danger">極めて高い</td></tr>
+          <tr><td>初回→2回目更新率</td><td class="num danger">18.9%</td><td class="num">70〜80%</td><td class="danger">極めて低い</td></tr>
+          <tr><td>リピート率年次推移</td><td class="num danger">30.9%→13.6%</td><td class="num">横ばい〜改善</td><td class="danger">悪化中</td></tr>
+          <tr><td>売上成長率（CY24→25）</td><td class="num warning">+1.7%</td><td class="num">+20〜30%</td><td class="warning">大幅未達</td></tr>
+          <tr><td>LTV中央値</td><td class="num warning">&yen;59,760</td><td class="num">&yen;300,000+</td><td class="warning">低い</td></tr>
+          <tr><td>WEB流入チャーン率</td><td class="num danger">86.9%</td><td class="num">--</td><td class="danger">主力チャネルの崩壊</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warning">
+      <strong>比較基準に関する注記</strong>
+      BIZMAPSは期間契約型のデータ商材であり、自動更新が前提の月額SaaSとは購買構造が異なる。SaaSの年間5〜7%との直接比較は不適切。より適切な比較対象は、帝国データバンク・東京商工リサーチ等のデータ系サービスの契約更新率、または年間契約SaaSのNRR（100〜120%が健全水準）。ただし、乖離の深刻さは比較基準を修正しても変わらない。
+    </div>
+  </div>
+
+  <!-- Plan Analysis -->
+  <div class="card">
+    <h3>プラン期間別チャーン・リピート分析</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>初回プラン</th><th class="num">顧客数</th><th class="num">リピーター</th><th class="num">リピート率</th><th class="num">チャーン率</th><th class="num">アクティブ率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3ヶ月</td><td class="num">315社</td><td class="num">59社</td><td class="num">18.7%</td><td class="num danger">92.4%</td><td class="num">7.6%</td></tr>
+          <tr><td>6ヶ月</td><td class="num">112社</td><td class="num">22社</td><td class="num">19.6%</td><td class="num warning">86.6%</td><td class="num">13.4%</td></tr>
+          <tr><td class="bold">12ヶ月</td><td class="num bold">281社</td><td class="num bold">53社</td><td class="num bold">18.9%</td><td class="num bold" style="color:var(--success)">74.7%</td><td class="num bold success">25.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-success">
+      <strong>12ヶ月プランが最も定着率が高い</strong>
+      リピート率は全プランで約19%と横並びだが、12ヶ月プランはチャーン率最低（74.7%）・アクティブ率最高（25.3%）。12ヶ月→12ヶ月のリピートが143件と圧倒的に多く、「ハマると続く」構造。<strong>長期契約への誘導が最優先施策。</strong>
+    </div>
+  </div>
+
+  <!-- Churn Structure -->
+  <div class="card">
+    <h3>離脱構造の因果モデル（データ逆算）</h3>
+    <div class="flow">[WEB流入（全体の83%）]
+    |
+    v
+[初回購入] ──── 81.1%が離脱
+    |                |
+    |                +-- A) 商品理解不足のまま購入（WEB訴求と実際のギャップ）
+    |                +-- B) 購入後のオンボーディング欠如（データを渡して終わり）
+    |                +-- C) 3ヶ月プランの短さ（効果実感前に契約終了）
+    |                +-- D) 業務フローへの未組み込み（定期利用シーン不在）
+    |                +-- E) プロダクト側の問題（※メディア施策外・別途検証要）
+    |
+    v  18.9%が更新
+[リピート購入] ──── 78.4%が最終的に離脱
+    |
+    v  約6%が3回以上
+[ロイヤル顧客] ──── 上位26社がLTV &yen;500,000以上</div>
+
+    <div class="alert alert-info">
+      <strong>注意：プロダクト側の検証も並行して必要</strong>
+      仮説A〜Dはすべて「伝え方・接点の問題」に帰着する。しかしリピート率が毎年低下している事実は、メディア施策だけでは説明しきれない。データ品質の劣化、競合（SalesNavi, Musubu, BaseConnect等）の台頭、価格競争力の変化なども検証すべき。本レポートの施策はメディア施策に焦点を絞っているが、プロダクト改善は別途進行が前提。
+    </div>
+  </div>
+
+  <!-- Channel Analysis -->
+  <div class="card">
+    <h3>購入経路別チャーン・リピート率</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>経路</th><th class="num">顧客数</th><th class="num">構成比</th><th class="num">リピート率</th><th class="num">チャーン率</th><th class="num">平均LTV</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WEB流入</td><td class="num">588社</td><td class="num">83.1%</td><td class="num">18.2%</td><td class="num danger">86.9%</td><td class="num">&yen;109,232</td></tr>
+          <tr><td class="bold">リピート経路</td><td class="num">26社</td><td class="num">3.7%</td><td class="num bold success">38.5%</td><td class="num">80.8%</td><td class="num bold success">&yen;184,568</td></tr>
+          <tr><td class="bold">問い合わせ</td><td class="num">24社</td><td class="num">3.4%</td><td class="num">20.8%</td><td class="num bold success">66.7%</td><td class="num">&yen;139,338</td></tr>
+          <tr><td>付き合い</td><td class="num">23社</td><td class="num">3.2%</td><td class="num">21.7%</td><td class="num">100.0%</td><td class="num">&yen;84,618</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px; font-size:.88rem; color:var(--gray-600);">
+      <strong>核心：</strong>「WEB流入 &times; 3ヶ月プラン」が最大の離脱セグメント。逆に「能動接点 &times; 12ヶ月プラン」が最も定着する組み合わせ。問い合わせ経由とWEB流入の差分（チャーン率で20.2%pt）は「購入後に接点があるかどうか」で説明できる。
+    </p>
+  </div>
+
+  <!-- Cohort -->
+  <div class="card">
+    <h3>年度別コホート劣化分析</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>コホート</th><th class="num">新規</th><th class="num">リピート率</th><th class="num">チャーン率</th><th class="num">平均購入回数</th><th class="num">平均LTV</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CY2021</td><td class="num">60社</td><td class="num">26.7%</td><td class="num">98.3%</td><td class="num">1.80回</td><td class="num">&yen;97,100</td></tr>
+          <tr><td class="bold">CY2022</td><td class="num">123社</td><td class="num bold success">30.9%</td><td class="num">97.6%</td><td class="num">1.79回</td><td class="num">&yen;119,350</td></tr>
+          <tr><td>CY2023</td><td class="num">139社</td><td class="num warning">20.1%</td><td class="num">95.7%</td><td class="num">1.35回</td><td class="num">&yen;144,016</td></tr>
+          <tr><td>CY2024</td><td class="num">186社</td><td class="num danger">15.6%</td><td class="num">94.6%</td><td class="num">1.27回</td><td class="num">&yen;118,694</td></tr>
+          <tr><td>CY2025</td><td class="num">154社</td><td class="num danger">13.6%</td><td class="num muted">68.2%（暫定）</td><td class="num">1.16回</td><td class="num">&yen;100,436</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-danger">
+      <strong>コホート劣化速度（線形回帰）</strong>
+      r<sub>1</sub>(t) = 0.340 - 0.048 &times; t（t=0がCY2022）<br>
+      年間約4.8%ptずつ初回更新率が低下 → CY2027にはリピート率10%、CY2029にはリピート率0%に到達する見通し。
+    </div>
+  </div>
+
+  <!-- Revenue Structure -->
+  <div class="card">
+    <h3>売上構造分析（DuPont的分解）</h3>
+    <div class="flow">売上 = 顧客数 &times; 購入頻度 &times; 購入単価
+
+CY2024: 513社 &times; 1.27回 &times; &yen;93,120 = &yen;22.6M
+CY2025: 667社 &times; 1.16回 &times; &yen;102,291 = &yen;23.0M
+
+  顧客数効果  : +30.0%（唯一のプラス）
+  頻度効果    : -8.7% （リピート率低下）
+  単価効果    : +9.8% （少数リピーターの高額化）
+
+  合成効果    : +1.7% ← 顧客数増加を頻度低下がほぼ相殺</div>
+
+    <h4>年別売上推移（新規 vs リピート）</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>年</th><th class="num">新規売上</th><th class="num">リピート売上</th><th class="num">合計</th><th class="num">リピート比率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CY2022</td><td class="num">&yen;5.97M</td><td class="num">&yen;4.28M</td><td class="num">&yen;10.25M</td><td class="num">41.8%</td></tr>
+          <tr><td>CY2023</td><td class="num">&yen;12.35M</td><td class="num">&yen;4.97M</td><td class="num">&yen;17.32M</td><td class="num">28.7%</td></tr>
+          <tr><td>CY2024</td><td class="num">&yen;16.77M</td><td class="num">&yen;5.86M</td><td class="num">&yen;22.63M</td><td class="num">25.9%</td></tr>
+          <tr><td class="bold">CY2025</td><td class="num">&yen;12.07M</td><td class="num bold">&yen;10.95M</td><td class="num bold">&yen;23.02M</td><td class="num bold success">47.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px; font-size:.88rem; color:var(--gray-600);">
+      2025年はリピート売上比率47.6%と過去最高だが、これは少数のリピーターが高額契約で支えている構造。新規顧客の単価・LTVは低下傾向にあり、新規獲得のROIは悪化している。
+    </p>
+  </div>
+
+  <!-- LTV -->
+  <div class="card">
+    <h3>LTV分析</h3>
+    <div class="two-col">
+      <div>
+        <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="kpi-box">
+            <div class="kpi-label">平均LTV</div>
+            <div class="kpi-value">&yen;128,481</div>
+          </div>
+          <div class="kpi-box kpi-warning">
+            <div class="kpi-label">LTV中央値</div>
+            <div class="kpi-value">&yen;59,760</div>
+            <div class="kpi-sub">平均の46.5%</div>
+          </div>
+        </div>
+        <p style="margin-top:12px; font-size:.88rem; color:var(--gray-600);">
+          平均と中央値の大きな乖離は、少数の高LTV顧客（上位3.7%がLTV &yen;500,000以上）に依存した偏った構造を示す。半数以上の顧客は初回の&yen;48,000〜&yen;60,000で離脱している。
+        </p>
+      </div>
+      <div>
+        <h4>プラン別平均購入金額</h4>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="bar-label">3ヶ月</span>
+            <div class="bar-track"><div class="bar-fill" style="width:50%; background:var(--warning)">&yen;48,191</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">6ヶ月</span>
+            <div class="bar-track"><div class="bar-fill" style="width:77%; background:var(--accent)">&yen;74,262</div></div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">12ヶ月</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--success)">&yen;96,971</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BIZMAPS MEASURES                                              -->
+<!-- ============================================================ -->
+<section class="section" id="bizmaps-measures">
+  <div class="section-header">
+    <span class="badge" style="background:var(--danger)">I</span>
+    <h2>BIZMAPS メディア施策ファーストステップ</h2>
+  </div>
+
+  <div class="card">
+    <h3>戦略的位置づけ</h3>
+    <div class="flow">現状の根本問題:
+  1. WEB流入の83%が「データを買って終わり」
+  2. 顧客の業務フローに組み込まれていない
+  3. 「継続利用の理由」が伝わっていない
+  4. 購入前の期待と購入後の体験にギャップがある
+
+メディア施策の2つの役割:
+  役割A:「購入前」── 質の高い見込み客の獲得と教育
+  役割B:「購入後」── 継続利用の動機づけと成功体験の蓄積
+
+  ※「新規獲得数の増加」ではなく
+   「定着する顧客の比率を高める」ことが最重要目標</div>
+  </div>
+
+  <!-- Measures List -->
+  <div class="card">
+    <h3>施策一覧（優先順位付き）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>優先度</th><th>施策</th><th>目的</th><th>効果発現</th><th>工数</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="danger bold">最優先</td><td class="bold">施策1: 購入後メールシーケンス</td><td>リテンション</td><td>2〜4週間</td><td>中</td></tr>
+          <tr><td class="danger bold">最優先</td><td class="bold">施策2: 活用事例コンテンツ群</td><td>獲得+リテンション</td><td>4〜8週間</td><td>大</td></tr>
+          <tr><td class="warning bold">高</td><td>施策3: セグメント別LP再設計</td><td>獲得の質向上</td><td>4〜6週間</td><td>中</td></tr>
+          <tr><td class="warning bold">高</td><td>施策4: データ活用ウェビナー</td><td>リテンション+獲得</td><td>3〜5週間</td><td>中</td></tr>
+          <tr><td>中</td><td>施策5: SEOコンテンツ戦略転換</td><td>獲得の質向上</td><td>3〜6ヶ月</td><td>大</td></tr>
+          <tr><td>中</td><td>施策6: リターゲティング再設計</td><td>休眠復帰</td><td>2〜3週間</td><td>小</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Measure 1 Detail -->
+  <div class="card">
+    <h3>施策1: 購入後メールシーケンス（最優先・即時着手）</h3>
+
+    <div class="alert alert-info">
+      <strong>なぜ最優先か</strong>
+      81.1%が1回で離脱 → 購入直後の体験設計が欠如。問い合わせ経由（能動接点あり）のチャーン率66.7% vs WEB流入86.9% → 差分20.2%ptは「購入後に接点があるか」で説明できる。初回更新率を18.9%→22%に引き上げた場合、年間売上増分 &yen;2,080,000（ROI 2.0倍以上）。
+    </div>
+
+    <h4>シーケンス全体像</h4>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-label">Day 0（購入直後）</div>
+        <div class="tl-body">「データ活用スタートガイド」- 購入お礼 + まず最初にやるべき3ステップ + CRMインポート手順</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 3</div>
+        <div class="tl-body">「データの精度を最大化する3つのコツ」- 絞り込み実例 + 成功事例（アポ率、商談化率等）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 7</div>
+        <div class="tl-body">「業界事例」- プラン期間に応じた出し分け。3ヶ月→次四半期訴求、12ヶ月→年間活用サイクル</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 14</div>
+        <div class="tl-body">「活用進んでいますか？」- 利用状況確認 + 15分無料オンライン相談案内 + チェックリストPDF</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 30</div>
+        <div class="tl-body">「1ヶ月の振り返り」- 業界平均との比較 + データ鮮度劣化の数値提示 + 更新案内</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 60（3ヶ月プランは残り1ヶ月）</div>
+        <div class="tl-body">「データ鮮度レポート」- 推定更新率の提示 + 最新データ差分サンプル + 12ヶ月アップグレード提案</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">Day 90（3ヶ月プラン満了日）</div>
+        <div class="tl-body">「契約満了 + 特別オファー」- 12ヶ月切替特典 + 放置リスクの定量提示</div>
+      </div>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>KPI設計の注意点</strong>
+      Day 0 の開封率目標は60%ではなく40〜50%が現実的（B2B平均20〜25%、購入直後メールでも60%は強気すぎる）。Day 14の相談予約率3%は、母数が月40〜50社だと月1〜2件となり、統計的有意差の検出に時間がかかる点を織り込む必要あり。
+    </div>
+
+    <h4>実装ステップ</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>期間</th><th>内容</th><th>必要リソース</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Week 1</td><td>メール文面作成（7通 &times; 3プラン分岐 = 最大21パターン）</td><td>コンテンツ担当 1名</td></tr>
+          <tr><td>Week 2</td><td>MAツール設定（HubSpot / Mailchimp / SendGrid等）</td><td>MA設定担当 1名</td></tr>
+          <tr><td>Week 3</td><td>テスト配信・ABテスト設計</td><td>同上</td></tr>
+          <tr><td>Week 4</td><td>本番配信開始 + 効果測定ダッシュボード構築</td><td>同上</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.88rem; color:var(--gray-600);">初期コスト: &yen;300,000〜&yen;500,000（MAツール月額含む）/ 事例取材協力 2〜3社が必要</p>
+  </div>
+
+  <!-- Measure 2 -->
+  <div class="card">
+    <h3>施策2: 活用事例コンテンツ群の構築</h3>
+    <div class="alert alert-info">
+      <strong>事例コンテンツは「獲得の質向上」と「リテンション」の両方に効く唯一のコンテンツタイプ</strong>
+      問い合わせ経由（チャーン率66.7%, LTV &yen;139,338）は購入前に具体的活用イメージを持っている。リピート経路（LTV &yen;184,568）は価値を実感済み。事例は両方の状態を擬似的に作り出せる。
+    </div>
+
+    <h4>事例体系（初期12本）</h4>
+    <div class="two-col">
+      <div>
+        <h4 style="margin-top:0;">軸1: 業界別（4本）</h4>
+        <ul>
+          <li>IT/SaaS企業のBDR立ち上げ事例</li>
+          <li>人材紹介会社の新規開拓事例</li>
+          <li>広告代理店のリスト営業事例</li>
+          <li>製造業のエリア営業効率化事例</li>
+        </ul>
+        <h4>軸2: 用途別（4本）</h4>
+        <ul>
+          <li>アウトバウンドコール用リスト作成</li>
+          <li>ABMのターゲティング</li>
+          <li>展示会フォローアップ補完</li>
+          <li>競合顧客リストの構築</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-top:0;">軸3: 成果別（4本）</h4>
+        <ul>
+          <li>「アポ率 1.2% → 3.8% に改善」</li>
+          <li>「リスト作成時間を月20時間削減」</li>
+          <li>「商談化率が2倍の絞り込み条件」</li>
+          <li>「12ヶ月プランで年間ROI 340%達成」</li>
+        </ul>
+        <h4>配置戦略</h4>
+        <ul>
+          <li>WEBサイト事例ページ（CVR +15〜20%）</li>
+          <li>購入後メール Day 7（更新率 +2〜3%pt）</li>
+          <li>マーケメディアWP掲載（後述）</li>
+          <li>SNS / ウェビナー / 広告素材</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.85rem; color:var(--gray-500); margin-top:12px;">制作期間: 取材1h + 執筆3h + 確認往復1週間 &asymp; 2週間/本 / 1本 &asymp; 1,800字 + スクリーンショット3〜5枚</p>
+  </div>
+
+  <!-- Measures 3-6 Summary -->
+  <div class="card">
+    <h3>施策3〜6 概要</h3>
+    <div class="two-col">
+      <div>
+        <h4>施策3: セグメント別LP再設計</h4>
+        <ul>
+          <li><strong>LP-A:</strong> IT/SaaS企業向け（BDR文脈で12ヶ月推奨）</li>
+          <li><strong>LP-B:</strong> 人材業界向け（エリア&times;業種の成長企業抽出）</li>
+          <li><strong>LP-C:</strong> 営業代行/テレアポ向け（電話番号精度訴求）</li>
+          <li><strong>LP-D:</strong> 汎用（12ヶ月プラン最上部配置に改修）</li>
+        </ul>
+        <p style="font-size:.85rem; color:var(--gray-500);">目標: 12ヶ月プラン選択率 39.7%→50%</p>
+
+        <h4>施策4: データ活用ウェビナー（月1回）</h4>
+        <ul>
+          <li>参加者目標: 各回30〜50名</li>
+          <li>既存顧客参加率目標: 30%以上</li>
+          <li>疑似的な「能動接点」を大量に作る手段</li>
+          <li>マーケメディアのセミナー集客機能を活用可能</li>
+        </ul>
+      </div>
+      <div>
+        <h4>施策5: SEOコンテンツ戦略転換</h4>
+        <ul>
+          <li>「買いたい人を集める」→「使い方を知りたい人を集める」</li>
+          <li>TOFU: 課題解決型（新規開拓方法、BDR立ち上げ等）</li>
+          <li>MOFU: 比較検討型（企業DB比較、BIZMAPS評判等）</li>
+          <li>BOFU: 活用ノウハウ型（Salesforce連携手順等）</li>
+        </ul>
+        <p style="font-size:.85rem; color:var(--gray-500);">月8本 &times; 6ヶ月 = 48本 / コスト &yen;1.4M〜&yen;2.4M</p>
+
+        <h4>施策6: リターゲティング広告の再設計</h4>
+        <ul>
+          <li><strong>Seg1:</strong> 満了後30〜90日の未更新（復帰率5%→年8〜10社）</li>
+          <li><strong>Seg2:</strong> LP訪問→未購入（事例コンテンツ誘導）</li>
+          <li><strong>Seg3:</strong> 3ヶ月プラン残30日（12ヶ月アップグレード提案）</li>
+        </ul>
+        <p style="font-size:.85rem; color:var(--gray-500);">予算: &yen;180,000〜&yen;300,000/月</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact -->
+  <div class="card">
+    <h3>BIZMAPS施策 総合効果試算</h3>
+    <div class="two-col">
+      <div>
+        <h4>6ヶ月後（施策1〜4稼働）</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>指標</th><th class="num">現状</th><th class="num">目標</th></tr></thead>
+            <tbody>
+              <tr><td>初回更新率</td><td class="num">18.9%</td><td class="num success">22〜25%</td></tr>
+              <tr><td>12ヶ月プラン選択率</td><td class="num">39.7%</td><td class="num success">48〜52%</td></tr>
+              <tr><td>問い合わせ経由比率</td><td class="num">3.4%</td><td class="num success">6〜8%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.85rem; color:var(--gray-600);">年間売上インパクト: +&yen;3.8M〜&yen;5.5M<br>施策コスト合計: &yen;4.0M（6ヶ月）<br>6ヶ月ROI: 0.95〜1.38倍</p>
+      </div>
+      <div>
+        <h4>12ヶ月後（施策5のSEO発現）</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>指標</th><th class="num">現状</th><th class="num">目標</th></tr></thead>
+            <tbody>
+              <tr><td>初回更新率</td><td class="num">18.9%</td><td class="num success">25〜28%</td></tr>
+              <tr><td>全体チャーンレート</td><td class="num">84.5%</td><td class="num success">78〜80%</td></tr>
+              <tr><td>年間売上</td><td class="num">&yen;23.0M</td><td class="num success">&yen;26〜28M</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.85rem; color:var(--gray-600);">12ヶ月ROI: 1.9〜2.8倍<br>（2巡目以降は追加コスト減少）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART II: MARKE MEDIA                                          -->
+<!-- ============================================================ -->
+<div class="part-separator">PART II ── マーケメディア</div>
+
+<section class="section" id="marke">
+  <div class="section-header">
+    <span class="badge" style="background:var(--accent)">II</span>
+    <h2>マーケメディア 構造分析と横展開戦略</h2>
+  </div>
+
+  <div class="card">
+    <h3>マーケメディア 基本KPI</h3>
+    <div class="kpi-grid">
+      <div class="kpi-box">
+        <div class="kpi-label">月間売上目標</div>
+        <div class="kpi-value">&yen;14.0M</div>
+        <div class="kpi-sub">メディア課の70%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">月間セッション</div>
+        <div class="kpi-value">85,000</div>
+        <div class="kpi-sub">Organic 43.8%</div>
+      </div>
+      <div class="kpi-box kpi-danger">
+        <div class="kpi-label">アクティブ掲載企業</div>
+        <div class="kpi-value">1,400社</div>
+        <div class="kpi-sub">アクティブ率 約16%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">キーイベント率</div>
+        <div class="kpi-value">4.63%</div>
+        <div class="kpi-sub">月間CV &asymp; 700件</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why MarkeMedia matters more -->
+  <div class="card">
+    <h3>なぜマーケメディアの改善がBIZMAPSより経済的インパクトが大きいか</h3>
+
+    <div class="alert alert-danger">
+      <strong>経済的インパクト比較（保守的修正済み）</strong>
+      <strong>マーケメディア:</strong> アクティブ率16%→24%で+700社。ただし再アクティブ化企業の売上貢献は現アクティブの50〜70%と推定。さらに実現率60〜80%を加味すると、<strong>月次+&yen;2.5M〜&yen;3.4M</strong>。<br>
+      <strong>BIZMAPS:</strong> チャーン率84.5%→78%で<strong>年間+&yen;2.6M〜&yen;4.2M</strong>。<br><br>
+      修正後でもマーケメディアのインパクトはBIZMAPSの<strong>5〜8倍</strong>。同一リソースの投下先としてマーケメディアの優先度は極めて高い。<br><br>
+      <span style="color:var(--gray-500); font-size:.82rem;">※「アクティブ率16%」の定義（掲載料支払中？ログイン？コンテンツ公開中？）と分母データの確認が前提。この試算は暫定値。</span>
+    </div>
+
+    <h4>BIZMAPSとマーケメディアの共通病理</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th>BIZMAPS</th><th>マーケメディア</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">顧客が買うもの</td><td>企業リスト（データ）</td><td>リード獲得（掲載枠）</td></tr>
+          <tr><td class="bold">成功の定義</td><td>リストを使ってアポが取れた</td><td>掲載からリードが来た</td></tr>
+          <tr><td class="bold">失敗の体験</td><td>データが古い/使えない</td><td>リードの質が低い/数が少ない</td></tr>
+          <tr><td class="bold">離脱率</td><td class="danger">81.1%が1回で離脱</td><td class="danger">84%が非アクティブ</td></tr>
+          <tr><td class="bold">共通原因</td><td colspan="2" style="text-align:center" class="danger">購入/掲載後の初期体験設計が欠如している</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Cross-deployment -->
+  <div class="card">
+    <h3>BIZMAPSからマーケメディアへの施策横展開</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>BIZMAPS施策</th><th>マーケメディアでの横展開</th><th>コスト倍率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>施策1: メールシーケンス</td><td>掲載企業向けオンボーディングメール「掲載効果を最大化する方法」</td><td>&times;1.5〜1.8</td></tr>
+          <tr><td>施策2: 活用事例</td><td>掲載成功事例「リード獲得数を3倍にした企業の秘密」</td><td>&times;1.5〜1.8</td></tr>
+          <tr><td>施策4: ウェビナー</td><td>掲載企業限定ウェビナー「掲載効果を最大化する7つのコツ」</td><td>&times;1.3</td></tr>
+          <tr><td>（新規）ヘルスチェック</td><td>掲載企業ダッシュボード「今月のリード獲得状況+改善提案」</td><td>新規設計</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warning">
+      <strong>注意: コンテンツの中身は別物</strong>
+      メールシーケンスの「骨格」（タイミング設計、分岐ロジック）はテンプレート化できるが、コンテンツは完全に異なる。BIZMAPSは「データの活用方法」、マーケメディアは「掲載コンテンツの最適化」。コスト倍率は当初見積もりの&times;1.2〜1.3ではなく、&times;1.5〜1.8が現実的。
+    </div>
+  </div>
+
+  <!-- MarkeMedia x BIZMAPS Linkage -->
+  <div class="card">
+    <h3>マーケメディア → BIZMAPS 連携施策</h3>
+
+    <h4>第1優先: ホワイトペーパー掲載による「教育済みリード」獲得</h4>
+    <div class="flow">マーケメディア月間CV: 5,700〜11,400
+  ↓ BIZMAPSターゲット該当率 15〜25%
+BIZMAPS候補リード: 855〜2,850/月
+  ↓ WP DL→BIZMAPS遷移率 8〜12%
+  ↓ 遷移→購入転換率 5〜10%（教育済み＝高転換）
+月間追加獲得: 3〜34社（中央値10社と仮定）
+
+期待チャーン率: 問い合わせ経由に近い &asymp; 70%
+ （WEB直接流入86.9%から ▲16.9%ptの改善）
+
+追加CAC: WP制作費 &yen;200,000〜300,000（初回のみ）
+  2ヶ月目以降 &asymp; &yen;0（社内メディアのため）</div>
+
+    <h4>第2優先: ウェビナー共同集客</h4>
+    <p style="font-size:.88rem; color:var(--gray-600);">
+      マーケメディアのメルマガリスト（推定8,750社）を活用。メール開封率25% &times; クリック率5% &times; 登録率30% = 約33人/回。BIZMAPS単独（10〜15人）の2〜3倍の参加者を確保可能。
+    </p>
+
+    <h4>第3優先: マーケメディア記事内でのBIZMAPS言及</h4>
+    <p style="font-size:.88rem; color:var(--gray-600);">
+      記事制作フローに「BIZMAPSデータを使った分析」を組み込み、自然文脈での認知形成 + 被リンク効果（SEO）を狙う。
+    </p>
+
+    <div class="alert alert-info">
+      <strong>カニバリゼーション回避</strong>
+      BIZMAPSのWP掲載がマーケメディアの有料掲載企業のリード獲得を圧迫しないよう、掲載枠の配置を調整。UTMパラメータによるアトリビューション追跡も必須。
+    </div>
+  </div>
+
+  <!-- Next Action for MarkeMedia -->
+  <div class="card">
+    <h3>マーケメディア 優先アクション</h3>
+    <div class="alert alert-danger">
+      <strong>最優先: アクティブ率「16%」の定義確認とデータ整備</strong>
+      マーケメディアにBIZMAPSと同等の分析を行うためのデータが揃っているか確認。データがなければ施策設計の前にデータ整備から着手が必要。
+    </div>
+    <ul>
+      <li><strong>即時:</strong> 非アクティブ企業7,350社のデータ取得（非アクティブ化タイミング・業種・プラン分布の分析）</li>
+      <li><strong>即時:</strong> マーケメディア会員 &times; BIZMAPS顧客の名寄せ・重複率算出（クロスセル可否の判断）</li>
+      <li><strong>2週間以内:</strong> 重複率に基づきクロスセル or WP掲載を選択し、連携施策を設計</li>
+      <li><strong>1ヶ月以内:</strong> BIZMAPSのメールシーケンスと同時にマーケメディア版を設計・リリース</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART III: PORTFOLIO                                            -->
+<!-- ============================================================ -->
+<div class="part-separator">PART III ── メディアポートフォリオ</div>
+
+<section class="section" id="portfolio">
+  <div class="section-header">
+    <span class="badge" style="background:var(--success)">III</span>
+    <h2>メディアポートフォリオ分析と再編方針</h2>
+  </div>
+
+  <!-- Traffic Ranking -->
+  <div class="card">
+    <h3>メディア別トラフィック・収益マップ</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>メディア</th><th class="num">月間セッション</th><th class="num">エンゲージメント率</th><th class="num">キーイベント率</th><th>収益貢献</th><th>トレンド</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="bold">BIZMAPS</td><td class="num">574,000</td><td class="num">47.3%</td><td class="num">1.76%</td><td class="bold">月&yen;6M（目標）</td><td>横ばい</td></tr>
+          <tr><td>2</td><td class="bold">ママワークス</td><td class="num">510,000</td><td class="num">57.9%</td><td class="num">5.11%</td><td>間接的（リサーチャー供給）</td><td>安定</td></tr>
+          <tr><td>3</td><td class="bold">マーケメディア</td><td class="num">85,000</td><td class="num">46.8%</td><td class="num">4.63%</td><td class="bold">月&yen;14M（目標）</td><td>安定</td></tr>
+          <tr><td>4</td><td>キャリア協会</td><td class="num">53,000</td><td class="num">54.1%</td><td class="num muted">0%</td><td class="muted">不明確</td><td class="danger">減少</td></tr>
+          <tr><td>5</td><td>CXOワークス</td><td class="num">30,500</td><td class="num danger">96.5%</td><td class="num danger">96.3%</td><td class="muted">&asymp; &yen;0</td><td class="warning">要精査</td></tr>
+          <tr><td>6</td><td>リワークス</td><td class="num">25,300</td><td class="num danger">95.9%</td><td class="num danger">99.7%</td><td class="muted">&asymp; &yen;0</td><td class="warning">要精査</td></tr>
+          <tr><td>7</td><td>AI活用研究所</td><td class="num">6,200</td><td class="num">53.3%</td><td class="num muted">0%</td><td class="muted">&asymp; &yen;0</td><td class="success">成長</td></tr>
+          <tr><td>8</td><td>M&A比較ナビ</td><td class="num">4,650</td><td class="num">63.0%</td><td class="num muted">0%</td><td class="muted">&asymp; &yen;0</td><td>横ばい</td></tr>
+          <tr><td>9</td><td>DX支援メディア</td><td class="num">1,400</td><td class="num">55.7%</td><td class="num muted">0%</td><td class="muted">&asymp; &yen;0</td><td class="danger">減少</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Anomaly Detection -->
+  <div class="card">
+    <h3>CXOワークス・リワークスの異常値検証</h3>
+    <div class="two-col">
+      <div>
+        <h4>統計的異常性</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>指標</th><th class="num">一般水準</th><th class="num">CXO</th><th class="num">リワークス</th></tr></thead>
+            <tbody>
+              <tr><td>エンゲージメント率</td><td class="num">55〜65%</td><td class="num danger">96.5%</td><td class="num danger">95.9%</td></tr>
+              <tr><td>キーイベント率</td><td class="num">1〜5%</td><td class="num danger">96.3%</td><td class="num danger">99.7%</td></tr>
+              <tr><td>z-score（エンゲージ）</td><td class="num">--</td><td class="num danger">3.6</td><td class="num danger">3.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.85rem; color:var(--gray-600);">z = 3.6 → 正規分布で発生確率 0.016%。正常なユーザー行動ではほぼ説明不可能。</p>
+      </div>
+      <div>
+        <h4>原因仮説</h4>
+        <ol style="font-size:.88rem; color:var(--gray-600);">
+          <li><strong>キーイベント定義の不適切</strong> - PV自体をキーイベントに設定</li>
+          <li><strong>ポイントサイト経由のインセンティブ付きトラフィック</strong> - CXOワークスにpoint-museum等からのreferral多数</li>
+          <li><strong>ボット/不正トラフィック</strong></li>
+          <li><strong>計測タグの設定ミス</strong></li>
+        </ol>
+        <div class="alert alert-danger" style="margin-top:12px;">
+          <strong>今週中に検証すべき</strong>
+          GA4のキーイベント定義 → 参照元分布 → ユーザー行動フロー → 収益データ照合の順で調査。不正確認なら計画的閉鎖（3週間以内）。ただし閉鎖前に保有会員データの棚卸しを実施し、BIZMAPSまたはマーケメディアへのデータ移行を検討。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shutdown Criteria -->
+  <div class="card">
+    <h3>メディア撤退判断基準（提案）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>条件</th><th>基準</th><th>解釈</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">条件1: 経済的閾値</td><td>月間運用コスト &times; 12 &gt; 年間収益貢献 &times; 3</td><td>3年運用しても累積赤字が解消されない</td></tr>
+          <tr><td class="bold">条件2: トラフィック閾値</td><td>月間セッション &lt; 2,000 が6ヶ月連続</td><td>市場に受け入れられていない</td></tr>
+          <tr><td class="bold">条件3: 成長率閾値</td><td>前年同月比 &lt; ▲20% が3ヶ月連続</td><td>構造的衰退トレンド</td></tr>
+          <tr><td class="bold">条件4: 品質閾値</td><td>エンゲージメント率 &gt; 90% かつ 収益 &asymp; &yen;0</td><td>不正/不良トラフィックの疑い</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4 style="margin-top:16px;">各メディアの判定</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>メディア</th><th>条件1</th><th>条件2</th><th>条件3</th><th>条件4</th><th>判定</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>マーケメディア</td><td>&times;</td><td>&times;</td><td>&times;</td><td>&times;</td><td class="success bold">継続（柱）</td></tr>
+          <tr><td>BIZMAPS</td><td>&times;</td><td>&times;</td><td>&times;</td><td>&times;</td><td class="success bold">継続（改善中）</td></tr>
+          <tr><td>ママワークス</td><td>&times;</td><td>&times;</td><td>&times;</td><td>&times;</td><td class="success bold">継続</td></tr>
+          <tr><td>キャリア協会</td><td class="muted">要確認</td><td>&times;</td><td class="warning">△</td><td>&times;</td><td class="muted">要調査→後回し</td></tr>
+          <tr><td>AI活用研究所</td><td class="muted">要確認</td><td>&times;</td><td>&times;</td><td>&times;</td><td class="warning bold">条件付き育成</td></tr>
+          <tr><td>ディールラボ</td><td class="muted">要確認</td><td class="muted">要確認</td><td class="muted">要確認</td><td>&times;</td><td class="warning bold">仮説検証</td></tr>
+          <tr><td>DX支援メディア</td><td class="danger">○?</td><td class="warning">△</td><td class="danger">○?</td><td>&times;</td><td class="danger bold">統合候補</td></tr>
+          <tr><td>CXOワークス</td><td class="danger">○?</td><td>&times;</td><td class="muted">要確認</td><td class="danger bold">○</td><td class="danger bold">閉鎖候補</td></tr>
+          <tr><td>リワークス</td><td class="danger">○?</td><td class="muted">要確認</td><td class="muted">要確認</td><td class="danger bold">○</td><td class="danger bold">閉鎖候補</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Portfolio Redesign -->
+  <div class="card">
+    <h3>修正ポートフォリオ方針</h3>
+    <div class="portfolio-grid">
+      <div class="pf-card" style="border-color:var(--accent);">
+        <span class="pf-tag tag-invest">集中投資</span>
+        <div class="pf-name">BIZMAPS</div>
+        <div class="pf-sessions">月57.4万セッション / 月&yen;6M目標</div>
+        <div class="pf-desc">チャーン改善6施策を実行。設計段階からマーケメディアへの横展開をテンプレート化して織り込む。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--accent);">
+        <span class="pf-tag tag-invest">集中投資</span>
+        <div class="pf-name">マーケメディア</div>
+        <div class="pf-sessions">月8.5万セッション / 月&yen;14M目標</div>
+        <div class="pf-desc">アクティブ率改善が最大の経済的インパクト（月+&yen;2.5M〜3.4M）。BIZMAPS連携（WP掲載・クロスセル）。顧客データ名寄せで戦略方向を決定。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--warning);">
+        <span class="pf-tag tag-conditional">条件付き育成</span>
+        <div class="pf-name">AI活用研究所</div>
+        <div class="pf-sessions">月6,200セッション（成長中）</div>
+        <div class="pf-desc">3ヶ月以内にBIZMAPS送客の実効性を検証（CTA設置→クリック率2%以上 + 月次成長率+10%以上が条件）。未達なら「維持」に格下げ。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--info);">
+        <span class="pf-tag tag-verify">仮説検証</span>
+        <div class="pf-name">ディールラボ</div>
+        <div class="pf-sessions">累計UU 約180万（2022年末時点）</div>
+        <div class="pf-desc">上位26社ヒアリングで需要検証。支払意思50%以上→育成（ただしBIZMAPS内プレミアム機能化を優先検討）。ほぼゼロ→閉鎖。対象母数が小さすぎてメディア単独でのスケールは困難。</div>
+      </div>
+      <div class="pf-card">
+        <span class="pf-tag tag-maintain">維持</span>
+        <div class="pf-name">ママワークス</div>
+        <div class="pf-sessions">月51万セッション</div>
+        <div class="pf-desc">BIZMAPSのデータ精度を支えるリサーチャーの供給源として現状運用を維持。チャーン改善との直接的連携は対象外。</div>
+      </div>
+      <div class="pf-card">
+        <span class="pf-tag tag-maintain">維持</span>
+        <div class="pf-name">キャリア協会</div>
+        <div class="pf-sessions">月5.3万セッション（減少中）</div>
+        <div class="pf-desc">月次モニタリングのみ（5分/月）。減少原因調査はPhase 3以降（4〜6ヶ月後）。急激な下落（前月比▲30%以上）があった場合のみ緊急対応。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--danger);">
+        <span class="pf-tag tag-close">閉鎖検討</span>
+        <div class="pf-name">CXOワークス</div>
+        <div class="pf-sessions">月3万セッション（品質疑義あり）</div>
+        <div class="pf-desc">エンゲージメント率96%・キーイベント率96%は統計的に異常。今週中にGA4検証→保有データ棚卸し→データ移行→計画的閉鎖（3週間以内）。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--danger);">
+        <span class="pf-tag tag-close">閉鎖検討</span>
+        <div class="pf-name">リワークス</div>
+        <div class="pf-sessions">月2.5万セッション（品質疑義あり）</div>
+        <div class="pf-desc">キーイベント率99.7%は明確に異常。ママワークスとの棲み分けも不明確。今月中にママワークスとの統合 or 閉鎖を判断。</div>
+      </div>
+      <div class="pf-card" style="border-color:var(--danger);">
+        <span class="pf-tag tag-close">統合</span>
+        <div class="pf-name">DX支援メディア</div>
+        <div class="pf-sessions">月1,400セッション（減少中）</div>
+        <div class="pf-desc">AI活用研究所にテーマ統合。301リダイレクトで移行。1ヶ月以内に計画策定。ただし3〜6ヶ月の検索順位低下リスクあり。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART IV: SYNERGY & ACTIONS                                    -->
+<!-- ============================================================ -->
+<div class="part-separator">PART IV ── 統合戦略</div>
+
+<section class="section" id="synergy">
+  <div class="section-header">
+    <span class="badge" style="background:var(--info)">IV</span>
+    <h2>メディア間連携とシナジー設計</h2>
+  </div>
+
+  <div class="card">
+    <h3>施策間の相互関係</h3>
+    <div class="flow">[SEOコンテンツ(施策5)] ──→ [セグメント別LP(施策3)] ──→ [購入]
+        |                                                     |
+        v                                                     v
+[ウェビナー(施策4)]                              [メールシーケンス(施策1)]
+        |                                                     |
+        v                                                     v
+[事例コンテンツ(施策2)]  ◀──────────────────▶  [リターゲティング(施策6)]
+        |
+        v
+[更新/アップグレード]
+
+──── マーケメディア連携 ────
+[マーケメディア WP掲載]  ──→ 教育済みリード → BIZMAPS購入（チャーン率低）
+[マーケメディア メルマガ] ──→ ウェビナー参加者 2〜3倍
+[マーケメディア 記事]    ──→ BIZMAPS自然認知 + 被リンク
+
+全施策が「事例コンテンツ」を核として循環する構造
+→ 事例の質と量が全体の成果を左右する</div>
+  </div>
+
+  <div class="card">
+    <h3>顧客データ統合 ── 最大の未活用資産</h3>
+    <div class="alert alert-info">
+      <strong>名寄せで戦略の方向性が決まる</strong>
+      マーケメディア会員（推定8,750社）とBIZMAPS顧客（867社累計）の重複率を算出する。この1つの数値で連携の最適形が決まる。
+    </div>
+    <div class="two-col">
+      <div>
+        <h4>重複率が高い場合（&gt; 100社）</h4>
+        <ul>
+          <li>クロスセルメールでCAC &asymp; &yen;0のリード獲得</li>
+          <li>対象: マーケメディア会員のうちBIZMAPSターゲット該当（推定1,750社）から既存顧客を除外 = 883社</li>
+          <li>転換率3%で26.5社 → 年間 +&yen;3.18M</li>
+        </ul>
+      </div>
+      <div>
+        <h4>重複率が低い場合（&lt; 30社）</h4>
+        <ul>
+          <li>異なる顧客層にリーチしている → クロスセルよりWP掲載が有効</li>
+          <li>マーケメディアを「BIZMAPS向け新規リード獲得チャネル」として活用</li>
+          <li>ホワイトペーパー施策が第1優先</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.85rem; color:var(--gray-500); margin-top:12px;">所要時間: 2〜4時間（データ抽出 + Excel/Python処理）/ コスト: &yen;0</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- NEXT ACTIONS                                                  -->
+<!-- ============================================================ -->
+<section class="section" id="action">
+  <div class="section-header">
+    <span class="badge" style="background:var(--info)">V</span>
+    <h2>統合ネクストアクション</h2>
+  </div>
+
+  <div class="card">
+    <h3>実行タイムライン</h3>
+
+    <h4 style="color:var(--danger);">今週中（2項目に集中）</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>No.</th><th>アクション</th><th class="num">所要時間</th><th class="num">コスト</th><th>担当</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">1</td><td>CXOワークス・リワークスのGA4設定確認（キーイベント定義、参照元分布、不正トラフィック有無）</td><td class="num">1〜2h</td><td class="num">&yen;0</td><td>担当A</td></tr>
+          <tr><td class="bold">2</td><td>マーケメディア会員 &times; BIZMAPS顧客の名寄せ・重複率算出</td><td class="num">2〜4h</td><td class="num">&yen;0</td><td>担当B</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="color:var(--warning);">翌週（3項目）</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>No.</th><th>アクション</th><th class="num">所要時間</th><th class="num">コスト</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">3</td><td>マーケメディア非アクティブ企業データ取得・分析（タイミング・業種・プラン分布）</td><td class="num">3〜5h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">4</td><td>BIZMAPS上位26社へのヒアリング準備（ディールラボ需要検証用）</td><td class="num">1〜2h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">5</td><td>全メディアの撤退基準を経営層と合意（No.1の結果を材料に）</td><td class="num">1h</td><td class="num">&yen;0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="color:var(--accent);">2週間以内（3項目）</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>No.</th><th>アクション</th><th class="num">所要時間</th><th class="num">コスト</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">6</td><td>CXOワークス・リワークスの閉鎖/継続判断 + データ棚卸し</td><td class="num">2〜3h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">7</td><td>マーケメディア連携の具体施策設計（名寄せ結果に基づく）</td><td class="num">5〜10h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">8</td><td>BIZMAPSメールシーケンスの「テンプレート化」設計（マーケメディア横展開前提）</td><td class="num">5〜8h</td><td class="num">&yen;0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>1ヶ月以内（4項目）</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>No.</th><th>アクション</th><th class="num">所要時間</th><th class="num">コスト</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">9</td><td>AI活用研究所にBIZMAPS関連CTA設置・クリック率計測開始</td><td class="num">3〜5h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">10</td><td>ディールラボ需要検証ヒアリング完了 → 育成 or 閉鎖判断</td><td class="num">5〜10h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">11</td><td>DX支援メディア → AI活用研究所への統合計画策定</td><td class="num">5〜8h</td><td class="num">&yen;0</td></tr>
+          <tr><td class="bold">12</td><td>マーケメディアへの横展開施策 第一弾リリース</td><td class="num">10〜15h</td><td class="num">&yen;0〜</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3-month target -->
+  <div class="card">
+    <h3>3ヶ月後の目標状態</h3>
+    <div class="kpi-grid">
+      <div class="kpi-box kpi-success">
+        <div class="kpi-label">メディア数</div>
+        <div class="kpi-value">9 → 5〜6</div>
+        <div class="kpi-sub">CXO・リワークス閉鎖、DX統合、ディールラボ判断済</div>
+      </div>
+      <div class="kpi-box kpi-success">
+        <div class="kpi-label">BIZMAPS施策</div>
+        <div class="kpi-value">4/6 稼働</div>
+        <div class="kpi-sub">施策1〜4が稼働開始</div>
+      </div>
+      <div class="kpi-box kpi-success">
+        <div class="kpi-label">マーケメディア横展開</div>
+        <div class="kpi-value">1+ 施策稼働</div>
+        <div class="kpi-sub">メールシーケンス or WP掲載</div>
+      </div>
+      <div class="kpi-box kpi-info">
+        <div class="kpi-label">上位2メディアへのリソース集中</div>
+        <div class="kpi-value">70%+</div>
+        <div class="kpi-sub">BIZMAPS + マーケメディア</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIZMAPS施策タイムライン -->
+  <div class="card">
+    <h3>BIZMAPS施策 実行タイムライン</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>期間</th><th>施策1<br>メール</th><th>施策2<br>事例</th><th>施策3<br>LP</th><th>施策4<br>ウェビナー</th><th>施策5<br>SEO</th><th>施策6<br>リタゲ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold">W1-2</td><td style="background:#dcfce7">文面作成</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="bold">W2-3</td><td style="background:#dcfce7">MA設定</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="bold">W3-4</td><td style="background:#bbf7d0;font-weight:700">本番開始</td><td style="background:#dbeafe">取材開始</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="bold">W4-6</td><td style="background:#bbf7d0">運用</td><td style="background:#dbeafe">第1弾公開</td><td style="background:#fef9c3">WF作成</td><td></td><td></td><td></td></tr>
+          <tr><td class="bold">W6-8</td><td style="background:#bbf7d0">運用</td><td style="background:#dbeafe">制作中</td><td style="background:#fde68a;font-weight:700">LP-A,D公開</td><td style="background:#e0e7ff;font-weight:700">第1回開催</td><td></td><td style="background:#fce7f3">配信開始</td></tr>
+          <tr><td class="bold">W8-12</td><td style="background:#bbf7d0">運用</td><td style="background:#93c5fd;font-weight:700">6本公開</td><td style="background:#fde68a">LP-B,C公開</td><td style="background:#e0e7ff">月次開催</td><td style="background:#f3e8ff">記事制作開始</td><td style="background:#fce7f3">運用</td></tr>
+          <tr><td class="bold">W12-24</td><td style="background:#bbf7d0">PDCA</td><td style="background:#93c5fd">12本完了</td><td style="background:#fde68a">PDCA</td><td style="background:#e0e7ff">月次開催</td><td style="background:#d8b4fe;font-weight:700">月8本蓄積</td><td style="background:#fce7f3">PDCA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Final Summary -->
+  <div class="card" style="border:2px solid var(--accent);">
+    <h3>最も重要な3つの判断</h3>
+    <div class="alert alert-danger">
+      <strong>判断1: マーケメディアのアクティブ率改善を、BIZMAPSチャーン改善と同等以上の優先度で扱う</strong>
+      経済的インパクトはBIZMAPSの5〜8倍。BIZMAPSの施策設計段階からマーケメディアへの横展開を構造的に組み込むことで、同一リソースで桁違いのリターンを得られる。ただし「アクティブ率16%」の定義確認とデータ整備が大前提。
+    </div>
+    <div class="alert alert-warning">
+      <strong>判断2: メディア数を9から5〜6に削減し、リソースを集中させる</strong>
+      9メディア分散は3〜4メディア集中と比較して総成果が50〜70%毀損していると推定。CXOワークス・リワークスは統計的に異常なトラフィックで、閉鎖検討の対象。DX支援メディアはAI活用研究所に統合。
+    </div>
+    <div class="alert alert-info">
+      <strong>判断3: 名寄せの結果で、マーケメディア連携の形を決定する</strong>
+      重複率が高ければクロスセル、低ければWP掲載。この1つの数値で戦略の方向性が決まる。コスト&yen;0、所要時間2〜4時間。最もROIの高い調査タスク。
+    </div>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<footer style="background:var(--gray-800); color:var(--gray-400); text-align:center; padding:24px; font-size:.8rem;">
+  メディア課 総合分析レポート &mdash; 分析基準日: 2026年3月31日<br>
+  データソース: 251105更新_BIZMAPSKPI管理表 / GA4 (2025/1/1〜2026/3/27) / メディア課_計画メモ【25年】
+</footer>
+
+</body>
+</html>
