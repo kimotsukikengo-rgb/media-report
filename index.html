@@ -380,6 +380,84 @@
   .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: .75rem; font-weight: 700; color: #fff; min-width: 32px; }
   .bar-value { flex-shrink: 0; width: 60px; font-weight: 700; font-size: .85rem; }
 
+  /* ===== ASSET COMBINATION BADGE ===== */
+  .combo-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: .72rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .03em;
+  }
+  .combo-12 { background: linear-gradient(135deg, #ef4444, #f59e0b); }
+  .combo-13 { background: linear-gradient(135deg, #ef4444, #10b981); }
+  .combo-23 { background: linear-gradient(135deg, #f59e0b, #10b981); }
+  .combo-123 { background: linear-gradient(135deg, #ef4444, #8b5cf6, #10b981); }
+
+  .idea-card {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: box-shadow .2s;
+  }
+  .idea-card:hover { box-shadow: var(--shadow-lg); }
+  .idea-card .idea-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .idea-card .idea-id {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--gray-900);
+  }
+  .idea-card .idea-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+  .idea-card .idea-rev {
+    margin-left: auto;
+    font-size: .85rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .idea-card .idea-body { font-size: .9rem; color: var(--gray-600); line-height: 1.7; }
+  .idea-card .idea-body ul { padding-left: 18px; }
+  .idea-card .idea-body li { margin-bottom: 3px; }
+
+  .stars { color: var(--warning); letter-spacing: 2px; }
+
+  .asset-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: .82rem;
+    font-weight: 600;
+    border: 2px solid;
+  }
+  .asset-pill.a1 { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+  .asset-pill.a2 { border-color: var(--warning); color: #92400e; background: var(--warning-light); }
+  .asset-pill.a3 { border-color: var(--success); color: #065f46; background: var(--success-light); }
+
+  .priority-section { margin-bottom: 24px; }
+  .priority-section h4 {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: .95rem;
+    margin-bottom: 12px;
+  }
+  .priority-1 h4 { background: var(--danger-light); color: var(--danger); }
+  .priority-2 h4 { background: var(--warning-light); color: #92400e; }
+  .priority-3 h4 { background: var(--info-light); color: var(--info); }
+
   /* ===== PRINT ===== */
   @media print {
     .toc { display: none; }
@@ -426,6 +504,9 @@
     <a href="#portfolio" class="toc-portfolio">メディアポートフォリオ</a>
     <a href="#synergy" class="toc-strategy">メディア間連携</a>
     <a href="#action" class="toc-strategy">ネクストアクション</a>
+    <a href="#assets" style="border-left:3px solid #8b5cf6;">3資産戦略</a>
+    <a href="#ideas" style="border-left:3px solid #8b5cf6;">プロダクト構想</a>
+    <a href="#roadmap" style="border-left:3px solid #8b5cf6;">着手ロードマップ</a>
   </div>
 </nav>
 
@@ -1427,6 +1508,724 @@ BIZMAPS候補リード: 855〜2,850/月
     <div class="alert alert-info">
       <strong>判断3: 名寄せの結果で、マーケメディア連携の形を決定する</strong>
       重複率が高ければクロスセル、低ければWP掲載。この1つの数値で戦略の方向性が決まる。コスト&yen;0、所要時間2〜4時間。最もROIの高い調査タスク。
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PART V: 3 ASSETS STRATEGY                                     -->
+<!-- ============================================================ -->
+<div class="part-separator">PART V &mdash; 3つの資産 &times; 複数出口</div>
+
+<section class="section" id="assets">
+  <div class="section-header">
+    <span class="badge" style="background:#8b5cf6">VI</span>
+    <h2>3資産の構造と組み合わせマップ</h2>
+  </div>
+
+  <div class="card">
+    <h3>BIZMAPSが持つ3つの資産</h3>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-box" style="border:2px solid var(--danger);">
+        <div class="kpi-label" style="color:var(--danger); font-weight:700;">資産 1</div>
+        <div class="kpi-value" style="font-size:1.2rem;">企業データ</div>
+        <div class="kpi-sub">170万社の構造化データ<br>5,000種以上の検索タグ<br>リサーチャー3,200人が人力更新</div>
+      </div>
+      <div class="kpi-box" style="border:2px solid var(--warning);">
+        <div class="kpi-label" style="color:#92400e; font-weight:700;">資産 2</div>
+        <div class="kpi-value" style="font-size:1.2rem;">行動データ</div>
+        <div class="kpi-sub">月57万セッションの検索ログ<br>68,000アカウントの利用履歴<br>「誰が何を探しているか」の需要シグナル</div>
+      </div>
+      <div class="kpi-box" style="border:2px solid var(--success);">
+        <div class="kpi-label" style="color:#065f46; font-weight:700;">資産 3</div>
+        <div class="kpi-value" style="font-size:1.2rem;">他事業接続</div>
+        <div class="kpi-sub">ママワークスのワーカー基盤<br>ディールラボの業界分析<br>マーケメディアのリード獲得網</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>7つの組み合わせマトリクス</h3>
+    <div class="flow">    1 企業データ    2 行動データ    3 他事業接続
+         \              |              /
+          \             |             /
+    +------+------+------+------+------+------+------+
+    | 1x2  | 1x3  | 2x3  |  1   |  2   |  3   |1x2x3|
+    +------+------+------+------+------+------+------+
+      |       |       |                           |
+      v       v       v                           v
+    A,B,C   D,E,F   G,H                       I,J,K
+    需給     実行力   先回り                    統合PF
+    可視化   連携     サービス                  構想</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>組み合わせ</th><th>生まれる本質的価値</th><th>アナロジー</th><th>アイデア</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="combo-badge combo-12">1&times;2</span></td>
+            <td>「どの企業が存在するか」&times;「誰がその企業に関心を持っているか」= <strong>市場の需給マップのリアルタイム可視化</strong></td>
+            <td>株式市場の「板情報」</td>
+            <td class="bold">A, B, C</td>
+          </tr>
+          <tr>
+            <td><span class="combo-badge combo-13">1&times;3</span></td>
+            <td>「170万社の構造化データ」&times;「ワーカー基盤+ディールラボ」= <strong>データに基づく実行力を持ったPF</strong></td>
+            <td>Salesforceにもない「情報→分析→実行」の一気通貫</td>
+            <td class="bold">D, E, F</td>
+          </tr>
+          <tr>
+            <td><span class="combo-badge combo-23">2&times;3</span></td>
+            <td>「ユーザーの検索行動」&times;「ワーカー基盤+ディールラボ」= <strong>需要予測に基づく先回りサービス</strong></td>
+            <td>Amazonのカートリマーケティング</td>
+            <td class="bold">G, H</td>
+          </tr>
+          <tr>
+            <td><span class="combo-badge combo-123">1&times;2&times;3</span></td>
+            <td>3資産全統合 = <strong>B2B市場の需要と供給のマッチング基盤</strong></td>
+            <td>市場の情報非対称性を解消するプラットフォーム</td>
+            <td class="bold">I, J, K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- IDEAS                                                         -->
+<!-- ============================================================ -->
+<section class="section" id="ideas">
+  <div class="section-header">
+    <span class="badge" style="background:#8b5cf6">VII</span>
+    <h2>プロダクト構想 A〜K</h2>
+  </div>
+
+  <!-- ===== 1x2 ===== -->
+  <div class="card" style="background:linear-gradient(135deg,#fef2f2 0%,#fffbeb 100%); border:none;">
+    <h3><span class="combo-badge combo-12">1&times;2</span>&nbsp; 企業データ &times; 行動データ</h3>
+    <p style="font-size:.9rem; color:var(--gray-600);">「どの企業が存在するか」&times;「誰がその企業に関心を持っているか」= 市場の需給マップがリアルタイムで可視化される。株式市場における「板情報」に相当。</p>
+  </div>
+
+  <!-- A -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">A</span>
+      <span class="combo-badge combo-12">1&times;2</span>
+      <span class="idea-title">業界別「需要ヒートマップ」</span>
+      <span class="idea-rev success">年間 &yen;36M</span>
+    </div>
+    <div class="idea-body">
+      <p>業界別の被検索頻度・検索者の業種分布をリアルタイムで可視化するダッシュボード。「人材紹介業界が製造業を大量検索中 → 製造業の人手不足深刻化の兆候か」のようなシグナルを検出。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">BIZMAP Heat Map - 2025年6月第2週
+
+【被検索ヒートマップ（検索された側の業界）】
+ 製造業    ██████████████████████████ 高（+18%）
+ IT/SaaS  ████████████████████ 中高（+5%）
+ 医療     ██████████████████ 中高（+12%）
+ 不動産   ████████████████ 中（ +0%）
+ 飲食     ██████████ 低（-8%）
+
+【検索者ヒートマップ（検索している側の業界）】
+ 人材紹介  ██████████████████████████ 最活発
+ 広告代理店 ████████████████████ 活発
+ SaaS     ██████████████████ やや活発
+
+ 今週の注目シグナル:
+ 「人材紹介業界が製造業を大量検索中」
+ → 製造業の人手不足が深刻化している兆候か</div>
+
+      <div class="two-col">
+        <div>
+          <h4>販売先</h4>
+          <ul>
+            <li>経営コンサルティングファーム</li>
+            <li>VC / PE（投資判断の補助指標）</li>
+            <li>大手企業の経営企画部門</li>
+            <li>シンクタンク / 調査会社</li>
+          </ul>
+        </div>
+        <div>
+          <h4>価格設定</h4>
+          <ul>
+            <li>月額15万円（業界別ダッシュボード閲覧権）</li>
+            <li>月額50万円（全業界+API+カスタム分析）</li>
+            <li>年間契約 600万円（ディスカウント適用）</li>
+          </ul>
+          <p style="font-size:.82rem; color:var(--gray-400); margin-top:4px;">実現難易度: <span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">B</span>
+      <span class="combo-badge combo-12">1&times;2</span>
+      <span class="idea-title">企業版レコメンドエンジン</span>
+      <span class="idea-rev success">年間 &yen;24M</span>
+    </div>
+    <div class="idea-body">
+      <p>Amazonの「この商品を買った人はこちらも」と同原理を企業検索に適用。協調フィルタリング（Jaccard係数ベース）で「あなたが見落としているかもしれない企業 Top10」を推薦。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">協調フィルタリングの企業版:
+
+  ユーザー u1 のリスト: S1 = {c1, c3, c7}
+  ユーザー u2 のリスト: S2 = {c1, c3, c5, c9}
+
+  類似度 J(u1, u2) = |S1 &cap; S2| / |S1 &cup; S2| = 2/5 = 0.4
+
+  u1 への推薦: S2 \ S1 = {c5, c9}
+  推薦スコア: score(c, u1) = &Sigma;_u J(u1, u) &times; I(c &isin; S_u)
+
+  表示例:
+  1. 株式会社AAA（スコア 0.92）- 類似ユーザーの87%がリストに含有
+  2. BBB株式会社（スコア 0.85）- 検索業界の急成長企業</div>
+
+      <h4>マネタイズ</h4>
+      <ul>
+        <li>無料会員: 月3件まで表示</li>
+        <li>有料会員（月額9,800円）: 無制限表示</li>
+        <li>法人プラン（月額49,800円）: チーム共有+エクスポート</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--gray-400); margin-top:4px;">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">C</span>
+      <span class="combo-badge combo-12">1&times;2</span>
+      <span class="idea-title">営業タイミング予測「BIZMAP Timing」</span>
+      <span class="idea-rev success">年間 &yen;36M</span>
+    </div>
+    <div class="idea-body">
+      <p>行動データの時系列分析で「この企業に今アプローチすると効果が高い」タイミングを予測。被検索数の急増を異常検出スコア（z-score）で検出。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">異常検出スコア:
+  z(c, t) = (x(c,t) - &mu;(c)) / &sigma;(c)
+
+  x(c,t) : 企業cの時点tでの被検索数
+  &mu;(c)  : 過去90日間の平均被検索数
+  &sigma;(c) : 過去90日間の標準偏差
+  z > 2.0 のとき「注目急上昇」と判定
+
+  表示例:
+  1. 株式会社CCC（z = 4.2）
+     直近1週間で被検索数が通常の4.2倍に急増
+     検索者の業種: SaaS(60%), 広告(25%)
+     推測: 新規ITツール導入を検討中?
+
+  2. DDD株式会社（z = 3.1）
+     検索者の業種: 人材(80%)
+     推測: 大量採用 or 組織再編の兆候?</div>
+
+      <h4>販売対象</h4>
+      <ul>
+        <li>営業組織を持つ全ての企業、特にSaaS企業のSDRチーム</li>
+        <li>月額29,800円〜</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- ===== 1x3 ===== -->
+  <div class="card" style="background:linear-gradient(135deg,#fef2f2 0%,#ecfdf5 100%); border:none; margin-top:32px;">
+    <h3><span class="combo-badge combo-13">1&times;3</span>&nbsp; 企業データ &times; 他事業接続</h3>
+    <p style="font-size:.9rem; color:var(--gray-600);">「170万社の構造化データ」&times;「ワーカー基盤+ディールラボ」= データに基づく実行力を持ったプラットフォーム。通常のDBは「情報提供」で終わるが、BIZMAPSは「情報→分析→実行」まで一気通貫。</p>
+  </div>
+
+  <!-- D -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">D</span>
+      <span class="combo-badge combo-13">1&times;3</span>
+      <span class="idea-title">ワーカー基盤連動型テストマーケティング</span>
+      <span class="idea-rev success">年間 &yen;48M</span>
+    </div>
+    <div class="idea-body">
+      <p>新市場参入企業に「まず100社にアプローチして反応を見る」テストマーケティングを提供。BIZMAPSで抽出→ワーカー基盤がテレアポ→反応データを構造化して返却→分析レポート提供。</p>
+
+      <div class="two-col">
+        <div>
+          <h4>サービスフロー</h4>
+          <ol style="font-size:.88rem;">
+            <li>BIZMAPSで対象企業100社抽出</li>
+            <li>ワーカー基盤のテレアポ部隊が100社にアプローチ</li>
+            <li>反応データを構造化して返却（関心/条件付き/タイミング違い/不要/不通）</li>
+            <li>分析レポート（規模別・地域別・業種別の反応率）</li>
+            <li>分析に基づきターゲット再設計 → 本格営業へ移行</li>
+          </ol>
+        </div>
+        <div>
+          <h4>価格</h4>
+          <ul>
+            <li>100社テストパッケージ: 30万円</li>
+            <li>300社テストパッケージ: 80万円</li>
+            <li>500社テストパッケージ: 120万円</li>
+          </ul>
+          <h4>アップセル</h4>
+          <ul>
+            <li>テスト後「本格営業代行」: 月額50万円〜</li>
+            <li>市場データレポート化: 追加15万円</li>
+          </ul>
+          <p style="font-size:.82rem; color:var(--gray-400); margin-top:4px;">実現難易度: <span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span> リスト抽出コスト&yen;0のため価格優位性あり</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">E</span>
+      <span class="combo-badge combo-13">1&times;3</span>
+      <span class="idea-title">ディールラボ連動 M&Aターゲットリスト</span>
+      <span class="idea-rev success">年間 &yen;60M</span>
+    </div>
+    <div class="idea-body">
+      <p>ディールラボのM&A情報 &times; BIZMAPSの企業データで「買収候補リスト」を自動生成。例: ディールラボ「〇〇業界でM&A件数+40%」&times; BIZMAPS「従業員50名以下・設立10年以上・売上成長率マイナスの企業」= 被買収候補リスト。</p>
+
+      <div class="two-col">
+        <div>
+          <h4>ターゲット顧客</h4>
+          <ul>
+            <li>M&A仲介会社（日本M&Aセンター、ストライク等）</li>
+            <li>PEファンド</li>
+            <li>事業会社のM&A部門</li>
+            <li>銀行のM&Aアドバイザリー部門</li>
+          </ul>
+        </div>
+        <div>
+          <h4>価格設定</h4>
+          <ul>
+            <li>ロングリスト作成: 1業界50万円</li>
+            <li>月次更新サブスク: 月額30万円</li>
+            <li>フルカスタム分析: 100万円〜</li>
+          </ul>
+          <p style="font-size:.82rem; color:var(--gray-500); margin-top:8px;">市場規模: 日本のM&A件数 年4,000件超 / M&A仲介市場 推定3,000億円超 / ソーシング費用300〜600億円の一部を狙う</p>
+          <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">F</span>
+      <span class="combo-badge combo-13">1&times;3</span>
+      <span class="idea-title">業界参入コンサルティングパッケージ</span>
+      <span class="idea-rev success">年間 &yen;36M</span>
+    </div>
+    <div class="idea-body">
+      <p>データ + 実行力 + メディアを総合した「業界参入支援」ワンストップサービス。通常530万円かかる5要素を、自社資産活用で150万円で提供（粗利率70%以上）。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>パッケージ内容</th><th>通常発注時</th><th>BIZMAPS価格</th></tr></thead>
+          <tbody>
+            <tr><td>1. 業界分析レポート（BIZMAP DB活用）</td><td class="num">&yen;1,500,000</td><td rowspan="5" class="num bold success" style="vertical-align:middle; font-size:1.2rem;">&yen;1,500,000<br><span style="font-size:.75rem; color:var(--gray-400);">▲72%</span></td></tr>
+            <tr><td>2. ターゲット企業リスト（300社・スコアリング付き）</td><td class="num">&yen;500,000</td></tr>
+            <tr><td>3. テストアプローチ実施（ワーカー基盤で100社）</td><td class="num">&yen;800,000</td></tr>
+            <tr><td>4. ディールラボ掲載（新規参入ニュースとして記事化）</td><td class="num">&yen;500,000</td></tr>
+            <tr><td>5. 戦略提言書（テスト結果に基づく参入戦略）</td><td class="num">&yen;2,000,000</td></tr>
+            <tr><td class="bold">合計</td><td class="num bold">&yen;5,300,000</td><td class="num bold success">&yen;1,500,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- ===== 2x3 ===== -->
+  <div class="card" style="background:linear-gradient(135deg,#fffbeb 0%,#ecfdf5 100%); border:none; margin-top:32px;">
+    <h3><span class="combo-badge combo-23">2&times;3</span>&nbsp; 行動データ &times; 他事業接続</h3>
+    <p style="font-size:.9rem; color:var(--gray-600);">「ユーザーの検索行動」&times;「ワーカー基盤+ディールラボ」= 需要の予測に基づいた先回りサービス。ユーザーが「探している」段階で、先回りして「見つけてあげる」。</p>
+  </div>
+
+  <!-- G -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">G</span>
+      <span class="combo-badge combo-23">2&times;3</span>
+      <span class="idea-title">先回りアウトバウンド</span>
+      <span class="idea-rev" style="color:var(--danger);">年間 &yen;96M</span>
+    </div>
+    <div class="idea-body">
+      <p>BIZMAPSで特定業界を頻繁に検索しているユーザーに「あなたが探している企業、私たちがアポを取りましょうか?」とプッシュ提案。検索行動＝営業意図の最強シグナル。意図が明確な瞬間にサービスを提案するのでCVRが極めて高い。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">フロー:
+  1. ユーザーAが「物流業界 関東 100名以上」を3回以上検索（行動データ検知）
+  2. システムがトリガーを自動発火
+  3. ユーザーAにメール:「物流業界への営業をお考えですか?
+     営業代行チームが最初の20社へのアプローチを代行。初回限定5万円」
+  4. 申し込み → ワーカー基盤が実行 → 結果レポート返却
+  5. 継続利用 → 月額契約に転換
+
+収益見込み:
+  月間アクティブ検索ユーザー : 推定5,000人
+  トリガー対象（3回以上検索）: 推定500人
+  メール開封率 25% → 125人
+  申込率 10% → 12.5件
+  平均単価 &yen;150,000
+  月間売上: 約&yen;1,870,000
+
+  月額契約転換率 30% → 毎月3〜4社が月額50万円の営業代行へ
+  → 半年後にはストック売上だけで月&yen;6M〜&yen;8M</div>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span> 技術的にはメール配信自動化だけで開始可能</p>
+    </div>
+  </div>
+
+  <!-- H -->
+  <div class="idea-card">
+    <div class="idea-header">
+      <span class="idea-id">H</span>
+      <span class="combo-badge combo-23">2&times;3</span>
+      <span class="idea-title">ディールラボ記事 &times; 行動データの逆引きサービス</span>
+      <span class="idea-rev success">年間 &yen;36M</span>
+    </div>
+    <div class="idea-body">
+      <p>ディールラボ記事を読んだ後にBIZMAPSで該当業界を検索したユーザーを分析。「〇〇業界にIT商材を売りたい企業のリスト」としてSaaS企業等に販売。記事スポンサー（1記事30万円）にアクションデータを提供+ネイティブ広告+CPLベース成果報酬の併用モデル。</p>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- ===== 1x2x3 ===== -->
+  <div class="card" style="background:linear-gradient(135deg,#fef2f2 0%,#eef2ff 50%,#ecfdf5 100%); border:none; margin-top:32px;">
+    <h3><span class="combo-badge combo-123">1&times;2&times;3</span>&nbsp; 3資産全統合</h3>
+    <p style="font-size:.9rem; color:var(--gray-600);">構造化された170万社のデータ &times; ユーザーの検索・行動ログ &times; ワーカー基盤とメディアの実行力 = <strong>「市場の情報非対称性を解消するプラットフォーム」</strong>。単なるDBではなくB2B市場全体の需給マッチング基盤。</p>
+  </div>
+
+  <!-- I -->
+  <div class="idea-card" style="border:2px solid var(--info);">
+    <div class="idea-header">
+      <span class="idea-id">I</span>
+      <span class="combo-badge combo-123">1&times;2&times;3</span>
+      <span class="idea-title">BIZMAP Intelligence Platform（BIP）</span>
+      <span class="idea-rev" style="color:var(--info);">年間 &yen;180M</span>
+    </div>
+    <div class="idea-body">
+      <p>全3資産を統合した法人向けインテリジェンス基盤。企業の意思決定に必要な情報を全て提供。</p>
+
+      <div class="flow" style="font-size:.76rem; line-height:1.7; margin:12px 0;">+--------------------------------------------------+
+|         BIZMAP Intelligence Platform              |
+|                                                    |
+|  +----------------------------------------------+ |
+|  |           統合ダッシュボード                   | |
+|  |  +----------+ +----------+ +-----------+     | |
+|  |  |市場動向  | |競合監視  | |ターゲット |     | |
+|  |  |モニター  | |アラート  | |レコメンド |     | |
+|  |  +----+-----+ +----+-----+ +-----+-----+     | |
+|  +-------|-----------|--------------|-----------+ |
+|           |           |              |             |
+|  +--------v-----------v--------------v----------+ |
+|  |              分析エンジン層                    | |
+|  |  - インテントスコアリング                     | |
+|  |    s(c) = &Sigma;i wi &times; f(検索頻度,閲覧深度,DL,時間減衰)  | |
+|  |  - 業界トレンド検出                           | |
+|  |    trend(I,t) = &beta;0 + &beta;1*t + &epsilon;, &beta;1>0 &rArr; 成長    | |
+|  |  - 類似企業クラスタリング（k-means）          | |
+|  +-----------------------------------------------+ |
+|           |                                        |
+|  +--------v--------------------------------------+ |
+|  |         データ基盤層                           | |
+|  | (1)企業DB &times; (2)行動ログ &times; (3)外部連携       | |
+|  |  170万社    検索/DL/閲覧   ワーカー+ディールラボ| |
+|  +-----------------------------------------------+ |
+|           |                                        |
+|  +--------v--------------------------------------+ |
+|  |         アクション層                           | |
+|  | - ワンクリックでリスト生成                     | |
+|  | - 営業代行をそのまま発注                       | |
+|  | - 分析レポートを自動生成                       | |
+|  | - ディールラボで業界PRを発注                   | |
+|  +-----------------------------------------------+ |
++--------------------------------------------------+</div>
+
+      <h4>価格体系</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>プラン</th><th class="num">月額</th><th>含まれる機能</th></tr></thead>
+          <tbody>
+            <tr><td class="bold">Starter</td><td class="num">&yen;50,000</td><td>ダッシュボード閲覧 / 月50社レコメンド / 月1本業界レポート</td></tr>
+            <tr><td class="bold">Professional</td><td class="num">&yen;200,000</td><td>全機能アクセス / 無制限レコメンド / 競合監視アラート / API</td></tr>
+            <tr><td class="bold">Enterprise</td><td class="num">&yen;500,000〜</td><td>Professional全機能 / カスタム分析 / 専任アナリスト / 営業代行連携 / ディールラボPR枠</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- J -->
+  <div class="idea-card" style="border:2px solid var(--info);">
+    <div class="idea-header">
+      <span class="idea-id">J</span>
+      <span class="combo-badge combo-123">1&times;2&times;3</span>
+      <span class="idea-title">業界特化型バーティカルSaaS</span>
+      <span class="idea-rev" style="color:var(--danger);">年間 &yen;270M</span>
+    </div>
+    <div class="idea-body">
+      <p>特定業界に特化して3資産全投入。まず人材業界で「BIZMAP for HR」を構築し、成功パターンを他業界に横展開。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">BIZMAP for HR（人材業界特化版）
+
+  1. 求人企業候補リスト
+     過去3ヶ月で人材系企業に検索された企業 = 人材ニーズ高い
+
+  2. 競合動向モニタリング
+     同業他社がどの業界を検索しているかを匿名集計
+
+  3. 企業の採用意欲スコア
+     企業データ(従業員数推移) &times; 行動データ(被検索頻度)
+
+  4. テレアポ代行
+     採用意欲スコア高の企業にワーカー基盤がアプローチ
+
+  5. 業界ニュース連携
+     ディールラボの人材業界ニュースをダッシュボード配信</div>
+
+      <div class="two-col">
+        <div>
+          <h4>TAM（人材業界）</h4>
+          <ul>
+            <li>人材紹介事業者数: 約28,000社</li>
+            <li>BIZMAPS利用可能性のある規模: 約3,000社</li>
+            <li>月額15万円 &times; 3,000社 &times; 獲得率5%</li>
+            <li>= <strong>月額2,250万円（年間2.7億円）</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4>横展開ロードマップ</h4>
+          <ul>
+            <li>BIZMAP for SaaS（SaaS営業チーム向け）</li>
+            <li>BIZMAP for Consulting（コンサル営業向け）</li>
+            <li>BIZMAP for Finance（金融法人営業向け）</li>
+            <li>BIZMAP for Advertising（広告営業向け）</li>
+          </ul>
+          <p style="font-size:.85rem; color:var(--gray-600);">各業界 年間1〜3億 &times; 5業界 = <strong>年間5〜15億円</strong></p>
+        </div>
+      </div>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></p>
+    </div>
+  </div>
+
+  <!-- K -->
+  <div class="idea-card" style="border:2px solid var(--info);">
+    <div class="idea-header">
+      <span class="idea-id">K</span>
+      <span class="combo-badge combo-123">1&times;2&times;3</span>
+      <span class="idea-title">逆オークション型リード獲得</span>
+      <span class="idea-rev" style="color:var(--danger);">年間 &yen;120M</span>
+    </div>
+    <div class="idea-body">
+      <p>BIZMAPSで特定企業を複数ユーザーが検索している状態を検知。被検索企業側に「あなたに興味を持っている会社が10社あります」と提案し、双方マッチング。限界費用ほぼゼロ。</p>
+
+      <div class="flow" style="font-size:.78rem; line-height:1.7; margin:12px 0;">検索する側（営業したい企業）        検索される側（対象企業）
+
+  SaaS会社A ---&gt;                    +---------------+
+  SaaS会社B ---&gt;   BIZMAP DB  ---&gt; | 製造業X社     |
+  SaaS会社C ---&gt;                    |               |
+  コンサルD ----&gt;                    | 「あなたに    |
+  人材会社E ----&gt;                    |  興味を持つ   |
+                                     |  企業が5社」  |
+                                     +-------+-------+
+                                             |
+                                        X社が選ぶ
+                                     「話を聞きたい2社」
+                                             |
+                                     +-------+-------+
+                                     | SaaS会社B     |
+                                     | コンサルD      |
+                                     +---------------+
+
+  → BとDはX社とのアポイント獲得
+  → X社は自分のニーズに合う企業を選べる
+  → BIZMAPSは双方から手数料を得る</div>
+
+      <h4>課金モデル</h4>
+      <ul>
+        <li>検索する側: 1マッチングあたり5万円（or アポイント成立時10万円）</li>
+        <li>検索される側: 無料（参加インセンティブ）or 優先表示料 月額3万円</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--gray-400);">実現難易度: <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- REVENUE POTENTIAL & ROADMAP                                   -->
+<!-- ============================================================ -->
+<section class="section" id="roadmap">
+  <div class="section-header">
+    <span class="badge" style="background:#8b5cf6">VIII</span>
+    <h2>収益ポテンシャルと着手ロードマップ</h2>
+  </div>
+
+  <div class="card">
+    <h3>全アイデア 収益ポテンシャル一覧</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>組合せ</th><th></th><th>アイデア</th><th class="num">年間売上ポテンシャル</th><th>実現難易度</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="combo-badge combo-12" style="font-size:.65rem;">1&times;2</span></td><td class="bold">A</td><td>需要ヒートマップ</td><td class="num bold">&yen;36M</td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td></tr>
+          <tr><td><span class="combo-badge combo-12" style="font-size:.65rem;">1&times;2</span></td><td class="bold">B</td><td>レコメンドエンジン</td><td class="num bold">&yen;24M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td></tr>
+          <tr><td><span class="combo-badge combo-12" style="font-size:.65rem;">1&times;2</span></td><td class="bold">C</td><td>タイミング予測</td><td class="num bold">&yen;36M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td></tr>
+          <tr style="background:var(--gray-50);"><td><span class="combo-badge combo-13" style="font-size:.65rem;">1&times;3</span></td><td class="bold">D</td><td>テストマーケティング</td><td class="num bold">&yen;48M</td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td></tr>
+          <tr style="background:var(--gray-50);"><td><span class="combo-badge combo-13" style="font-size:.65rem;">1&times;3</span></td><td class="bold">E</td><td>M&Aターゲットリスト</td><td class="num bold">&yen;60M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td></tr>
+          <tr style="background:var(--gray-50);"><td><span class="combo-badge combo-13" style="font-size:.65rem;">1&times;3</span></td><td class="bold">F</td><td>業界参入パッケージ</td><td class="num bold">&yen;36M</td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td></tr>
+          <tr><td><span class="combo-badge combo-23" style="font-size:.65rem;">2&times;3</span></td><td class="bold">G</td><td>先回りアウトバウンド</td><td class="num bold danger">&yen;96M</td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td></tr>
+          <tr><td><span class="combo-badge combo-23" style="font-size:.65rem;">2&times;3</span></td><td class="bold">H</td><td>記事&times;行動データ販売</td><td class="num bold">&yen;36M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td></tr>
+          <tr style="background:var(--info-light);"><td><span class="combo-badge combo-123" style="font-size:.65rem;">全部</span></td><td class="bold">I</td><td>Intelligence Platform</td><td class="num bold" style="color:var(--info);">&yen;180M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></td></tr>
+          <tr style="background:var(--info-light);"><td><span class="combo-badge combo-123" style="font-size:.65rem;">全部</span></td><td class="bold">J</td><td>業界特化SaaS</td><td class="num bold danger">&yen;270M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></td></tr>
+          <tr style="background:var(--info-light);"><td><span class="combo-badge combo-123" style="font-size:.65rem;">全部</span></td><td class="bold">K</td><td>逆オークション</td><td class="num bold" style="color:var(--info);">&yen;120M</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td></tr>
+          <tr style="border-top:3px solid var(--gray-800);"><td colspan="3" class="bold">合計ポテンシャル</td><td class="num bold" style="font-size:1.1rem; color:var(--danger);">約 &yen;9.4億</td><td class="muted" style="font-size:.8rem;">※全て同時実行は非現実的</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="card">
+    <h3>着手推奨ロードマップ</h3>
+
+    <div class="priority-section priority-1">
+      <h4>第1優先: すぐ着手、3ヶ月以内に収益化</h4>
+      <div class="two-col">
+        <div class="idea-card" style="margin:0; border-color:var(--danger);">
+          <div class="idea-header" style="margin-bottom:6px;">
+            <span class="idea-id">G</span>
+            <span class="combo-badge combo-23" style="font-size:.65rem;">2&times;3</span>
+            <span class="idea-title" style="font-size:.9rem;">先回りアウトバウンド</span>
+          </div>
+          <ul style="font-size:.85rem; color:var(--gray-600);">
+            <li>行動データのトリガー設定 + ワーカー基盤連携</li>
+            <li>技術的にはメール配信の自動化だけで開始可能</li>
+            <li>月額ストック売上の積み上げ → 半年で月&yen;6〜8M</li>
+          </ul>
+        </div>
+        <div class="idea-card" style="margin:0; border-color:var(--danger);">
+          <div class="idea-header" style="margin-bottom:6px;">
+            <span class="idea-id">D</span>
+            <span class="combo-badge combo-13" style="font-size:.65rem;">1&times;3</span>
+            <span class="idea-title" style="font-size:.9rem;">テストマーケティング</span>
+          </div>
+          <ul style="font-size:.85rem; color:var(--gray-600);">
+            <li>パッケージ商品化 + LP作成 + 既存顧客に提案</li>
+            <li>新規開発なし、既存資産の組み合わせだけで可能</li>
+            <li>30万円/100社のパッケージは即日販売開始できる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-section priority-2">
+      <h4>第2優先: 半年以内に立ち上げ</h4>
+      <div class="portfolio-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="idea-card" style="margin:0;">
+          <div class="idea-header" style="margin-bottom:4px;">
+            <span class="idea-id">A</span>
+            <span class="idea-title" style="font-size:.85rem;">需要ヒートマップ</span>
+          </div>
+          <p style="font-size:.82rem; color:var(--gray-500);">行動ログ集計基盤が必要。MVPはスプレッドシートでも可。</p>
+        </div>
+        <div class="idea-card" style="margin:0;">
+          <div class="idea-header" style="margin-bottom:4px;">
+            <span class="idea-id">E</span>
+            <span class="idea-title" style="font-size:.85rem;">M&Aターゲットリスト</span>
+          </div>
+          <p style="font-size:.82rem; color:var(--gray-500);">ディールラボ連携設計 + M&A業界への営業チャネル開拓が必要。</p>
+        </div>
+        <div class="idea-card" style="margin:0;">
+          <div class="idea-header" style="margin-bottom:4px;">
+            <span class="idea-id">C</span>
+            <span class="idea-title" style="font-size:.85rem;">タイミング予測</span>
+          </div>
+          <p style="font-size:.82rem; color:var(--gray-500);">Aのヒートマップ基盤を流用可能。異常検出アルゴリズム実装。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-section priority-3">
+      <h4>第3優先: 1年以内に本格稼働</h4>
+      <div class="two-col">
+        <div class="idea-card" style="margin:0; border-color:var(--info);">
+          <div class="idea-header" style="margin-bottom:4px;">
+            <span class="idea-id">J</span>
+            <span class="idea-title" style="font-size:.85rem;">業界特化SaaS</span>
+          </div>
+          <p style="font-size:.82rem; color:var(--gray-500);">まず1業界（人材業界推奨）でPMFを検証。成功パターンを他業界に横展開。年間5〜15億円規模のビジネスに発展する可能性。</p>
+        </div>
+        <div class="idea-card" style="margin:0; border-color:var(--info);">
+          <div class="idea-header" style="margin-bottom:4px;">
+            <span class="idea-id">I</span>
+            <span class="idea-title" style="font-size:.85rem;">Intelligence Platform</span>
+          </div>
+          <p style="font-size:.82rem; color:var(--gray-500);">第1・第2優先の機能を統合する形で段階的に構築。最終的には全プロダクトの統合基盤に。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="card">
+    <h3>統合タイムライン</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>期間</th><th>チャーン改善（PART I-IV）</th><th>新プロダクト（PART V）</th><th>マイルストーン</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold">Month 1-2</td>
+            <td style="background:#dcfce7;">メールシーケンス本番開始<br>事例取材開始<br>GA4検証・名寄せ</td>
+            <td style="background:#fef9c3;">G: トリガー設計・メール自動化構築<br>D: パッケージ商品設計・LP作成</td>
+            <td>チャーン改善の基盤構築<br>G/Dの販売開始</td>
+          </tr>
+          <tr>
+            <td class="bold">Month 3-4</td>
+            <td style="background:#bbf7d0;">LP再設計リリース<br>ウェビナー第1回<br>リタゲ配信開始</td>
+            <td style="background:#fde68a;">G: 初月売上発生・月額転換開始<br>A: ヒートマップMVP開発</td>
+            <td>G の収益化確認<br>初回更新率の改善兆候</td>
+          </tr>
+          <tr>
+            <td class="bold">Month 5-6</td>
+            <td style="background:#bbf7d0;">事例12本完了<br>SEOコンテンツ蓄積</td>
+            <td style="background:#fde68a;">A: ヒートマップβ版リリース<br>E: M&Aリスト試作・営業開始<br>C: タイミング予測MVP</td>
+            <td>G のストック売上 月&yen;3〜5M<br>A/C の初期顧客獲得</td>
+          </tr>
+          <tr>
+            <td class="bold">Month 7-9</td>
+            <td style="background:#93c5fd;">全6施策PDCA<br>マーケメディア横展開</td>
+            <td style="background:#e0e7ff;">J: 人材業界特化版の設計開始<br>G: ストック売上 月&yen;6〜8M</td>
+            <td>チャーン率 84.5%→78%<br>新プロダクト売上 月&yen;10M+</td>
+          </tr>
+          <tr>
+            <td class="bold">Month 10-12</td>
+            <td style="background:#93c5fd;">SEO効果発現<br>年間売上 &yen;26〜28M</td>
+            <td style="background:#d8b4fe;">J: BIZMAP for HR β版リリース<br>I: 統合PF構想の具体化</td>
+            <td class="bold">新プロダクト含む月間売上<br>&yen;30M以上を目指す</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Final -->
+  <div class="card" style="border:2px solid #8b5cf6;">
+    <h3>3資産戦略の核心</h3>
+    <div class="alert alert-info">
+      <strong>BIZMAPSは「企業リスト販売会社」ではない</strong>
+      170万社の構造化データ、月57万セッションの行動ログ、ワーカー基盤とメディアネットワーク ── この3資産の掛け算は、年間9億円超のポテンシャルを持つ。現在はこの資産の1%も活用できていない。<br><br>
+      最も重要なのは、第1優先の <strong>G（先回りアウトバウンド）</strong> と <strong>D（テストマーケティング）</strong> を3ヶ月以内に立ち上げ、「既存資産の組み合わせだけで新しい収益が生まれる」ことを組織に証明すること。この成功体験が、後続のプロダクト（A, C, E, J, I）への投資判断の根拠になる。
     </div>
   </div>
 </section>
